@@ -12,7 +12,18 @@ namespace _6_DZ_Vvedenie
             // GetProcess getProcess = new GetProcess();
             // TableActiveProcesess.WriteTable();
             //  GetProcess.Some();
-            TableActiveProcesess.WriteTable();
+            while (true)
+            {
+                Console.Clear();
+                TableActiveProcesess.WriteTable();
+                Console.WriteLine("\nВведите ID или имя процесса, чтобы его завершить или  Exit - для выхода");
+                
+                string userValue = Console.ReadLine();
+                if(userValue.ToLower() == "exit") return;
+
+                if (int.TryParse(userValue, out int id)) TableActiveProcesess.KillById(id);
+                else TableActiveProcesess.KillByName(userValue);
+            }
         }
     }
 }
