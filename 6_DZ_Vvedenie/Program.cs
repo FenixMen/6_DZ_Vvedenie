@@ -15,14 +15,16 @@ namespace _6_DZ_Vvedenie
             while (true)
             {
                 Console.Clear();
-                TableActiveProcesess.WriteTable();
+                GetProcess allProcesses = new GetProcess();
+                TableActiveProcesess.WriteTable(allProcesses);
                 Console.WriteLine("\nВведите ID или имя процесса, чтобы его завершить или  Exit - для выхода");
                 
                 string userValue = Console.ReadLine();
                 if(userValue.ToLower() == "exit") return;
 
-                if (int.TryParse(userValue, out int id)) TableActiveProcesess.KillById(id);
-                else TableActiveProcesess.KillByName(userValue);
+                if (int.TryParse(userValue, out int id)) Processes.KillById(id, allProcesses);
+                else Processes.KillByName(userValue, allProcesses);
+                
             }
         }
     }
